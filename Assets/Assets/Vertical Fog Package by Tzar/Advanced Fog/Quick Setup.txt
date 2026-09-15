@@ -1,0 +1,13 @@
+The advanced vertical fog shader supports Standard, LWRP, URP
+
+1. Create 3D Object - Plane
+2. Create Material, drop Advanced Vertical Fog on top of it
+3. Apply the Material to the Plane
+
+If developing for mobile and the fog is completely transparent, attach the script from "Fix" folder to your Main Camera
+
+For any other questions you can chat with me here:
+https://discord.gg/y5SuAVb
+
+or mail me:
+contact@fuzion.gg

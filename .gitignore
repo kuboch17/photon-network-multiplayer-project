@@ -1,0 +1,33 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# IDE files
+.vscode/
+.idea/
+.vs/
+*.csproj
+*.sln
+*.user
+*.userprefs
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Unity crash files
+sysinfo.txt
+*.stacktrace
+
+# Built game currently in project root
+/Caveman Olympics.exe
+/Caveman Olympics_Data/
+/MonoBleedingEdge/
+/UnityCrashHandler32.exe
+/UnityPlayer.dll
