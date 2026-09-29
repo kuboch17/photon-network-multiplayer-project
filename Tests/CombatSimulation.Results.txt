@@ -1,0 +1,21 @@
+PASS: Near-simultaneous dodge
+PASS: No premature result
+PASS: Dodge wins exact impact tick
+PASS: Queue insertion order does not change result
+PASS: Late dodge cannot erase damage
+PASS: Attack damages once
+PASS: Duplicate and recovery cancel rejected
+PASS: Cooldown survives end of recovery
+PASS: Invulnerability end is exclusive
+PASS: Rendering frame rate does not change rules
+PASS: Invalid actor and past receipt rejected
+PASS: Authority moves dash one metre
+PASS: Spatial duel exact tie dodges
+PASS: Far target takes no damage
+PASS: Miss preserves health
+PASS: Exact 1.5 metre reach hits
+PASS: One millimetre outside reach misses
+PASS: Simultaneous attacks damage first player
+PASS: Simultaneous attacks damage second player
+PASS: Client snapshot cannot mutate authority health
+PASS: Spatial late dodge cannot undo hit

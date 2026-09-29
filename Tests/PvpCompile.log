@@ -1,0 +1,7 @@
+Assets\Photon\RoomManager.cs(188,32): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
+Assets\PvpLab\HuntingCombatDemo.cs(159,17): warning CS0618: 'Rigidbody.velocity' is obsolete: 'Please use Rigidbody.linearVelocity instead. (UnityUpgradable) -> linearVelocity'
+Assets\PvpLab\HuntingCombatDemo.cs(167,46): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'
+Assets\Photon\RoomManager.cs(13,37): warning CS0649: Field 'RoomManager.joinRoomButton' is never assigned to, and will always have its default value null
+Assets\Photon\RoomManager.cs(12,37): warning CS0649: Field 'RoomManager.createRoomButton' is never assigned to, and will always have its default value null
+Assets\Photon\RoomManager.cs(11,41): warning CS0649: Field 'RoomManager.roomNameInput' is never assigned to, and will always have its default value null
+PASS: PvP scripts compile against installed Unity and Photon assemblies

@@ -1,0 +1,376 @@
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 18964)
+VBCSCompiler prewarm took 9.96 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.2f1 (770e33f6875c) revision 7802419'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'en' Physical Memory: 16194 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-09-29T11:12:25Z
+[Licensing::Module] Successfully launched the LicensingClient (PId: 11516)
+Assertion failed on expression: 'SUCCEEDED(hr)'
+Assertion failed on expression: 'SUCCEEDED(hr)'
+Assertion failed on expression: 'ERROR_SUCCESS == status'
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.2f1\Editor\Unity.exe
+-batchmode
+-nographics
+-quit
+-projectPath
+C:\Users\alena\AppData\Local\Temp\HuntingPvPBuildProject-7c63fea27600463980a9005669abfecd
+-logFile
+C:\Users\alena\Documents\unity projects\photon-network-multiplayer-project-main\Tests\PunUnityBuild.log
+-buildWindows64Player
+C:\Users\alena\Documents\unity projects\photon-network-multiplayer-project-main\Builds\HuntingPvP\HuntingPvP.exe
+Successfully changed project path to: C:\Users\alena\AppData\Local\Temp\HuntingPvPBuildProject-7c63fea27600463980a9005669abfecd
+C:/Users/alena/AppData/Local/Temp/HuntingPvPBuildProject-7c63fea27600463980a9005669abfecd
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [10796]  Target information:
+
+Player connection [10796]  * "[IP] 10.128.111.133 [Port] 55505 [Flags] 2 [Guid] 278798457 [EditorId] 278798457 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-TK6ISM1) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [10796] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [10796] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-13712" after 0.5 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Module] Error: Timed-out after 60.00s, waiting for Licensing to initialize
+Library Redirect Path: Library/
+Rebuilding Library because the asset database could not be found!
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 41841739a178e8b535290cadb8c3ba9b
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052576
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.2f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = C:/Users/alena/AppData/Local/Temp/HuntingPvPBuildProject-7c63fea27600463980a9005669abfecd[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Unity Data Store running and initialised
+Initialize engine version: 6000.6.2f1 (770e33f6875c)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=1048576, entitiesPerBlock=256, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/alena/AppData/Local/Temp/HuntingPvPBuildProject-7c63fea27600463980a9005669abfecd/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.2f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56712
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.451265 seconds.
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  2.581 seconds
+Domain Reload Profiling: 6816ms
+	BeginReloadAssembly (491ms)
+		CreateAndSetChildDomain (5ms)
+	RebuildCommonClasses (9ms)
+	RebuildNativeTypeToScriptingClass (348ms)
+	initialDomainReloadingComplete (822ms)
+	LoadAllAssembliesAndSetupDomain (2562ms)
+		LoadAssemblies (483ms)
+		TypeCache.Refresh (2378ms)
+			TypeCache.ScanAssembly (1948ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (2584ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			BeforeProcessingInitializeOnLoad (278ms)
+			ProcessInitializeOnLoadAttributes (180ms)
+			ProcessInitializeOnLoadMethodAttributes (711ms)
+			EditorAssembliesLoaded (7ms)
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+[Licensing::Module] Timed-out after 60.01s, waiting for channel: "LicenseClient-alena"
+[Licensing::Module] Error: Licensing initialization failed after 74.82s
+[Licensing::Module] Licensing is initialized (took 5.33s).
+[Licensing::Module] Error: The connection with the Unity Licensing Client has been lost. Attempting to reconnect.
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+[Licensing::Module] Successfully launched the LicensingClient (PId: 4776)
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+[Licensing::Module] Timed-out after 60.00s, waiting for channel: "LicenseClient-alena"
+[Licensing::Module] The re-connection attempt was UN-successful.
+[Licensing::Module] Error: 'com.unity.editor.headless' was not found.
+[Licensing::Module] Error: The connection with the Unity Licensing Client has been lost. Attempting to reconnect.
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+[Licensing::Module] Successfully launched the LicensingClient (PId: 24520)
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+[Licensing::Module] Timed-out after 60.00s, waiting for channel: "LicenseClient-alena"
+[Licensing::Module] The re-connection attempt was UN-successful.
+[Licensing::Module] Error: 'com.unity.editor.headless' was not found.
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Done resolving packages in 28.15 seconds
+[Licensing::Module] Error: The connection with the Unity Licensing Client has been lost. Attempting to reconnect.
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+[Licensing::Module] Successfully launched the LicensingClient (PId: 16952)
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+[Licensing::Module] Timed-out after 60.00s, waiting for channel: "LicenseClient-alena"
+[Licensing::Module] The re-connection attempt was UN-successful.
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ai.navigation]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.cinemachine]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.collab-proxy]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ide.rider]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ide.visualstudio]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ide.vscode]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.multiplayer.center]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.render-pipelines.universal]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.shadergraph]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.test-framework]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.timeline]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ugui]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.accessibility]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.adaptiveperformance]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.ai]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.androidjni]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.animation]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.assetbundle]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.audio]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.cloth]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.director]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.imageconversion]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.imgui]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.jsonserialize]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.particlesystem]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.physics]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.physics2d]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.physicscore2d]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.screencapture]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.terrain]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.terrainphysics]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.tetgen]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.tilemap]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.timelinefoundation]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.ui]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.uielements]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.umbra]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unityanalytics]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unitywebrequest]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unitywebrequestassetbundle]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unitywebrequestaudio]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unitywebrequesttexture]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unitywebrequestwww]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.vectorgraphics]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.vehicles]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.video]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.wind]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.xr]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.subsystems]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.hierarchycore]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ext.nunit]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.render-pipelines.core]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.searcher]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.graph-authoring]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.render-pipelines.universal-config]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.splines]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.burst]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.collections]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.profiling.core]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.mathematics]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.settings-manager]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.nuget.mono-cecil]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.test-framework.performance]
+[Package Manager] The following packages were not registered because your license doesn't allow it.
+  com.unity.ai.navigation@2.0.14
+  com.unity.cinemachine@6.6.0
+  com.unity.collab-proxy@2.13.6
+  com.unity.ide.rider@3.0.38
+  com.unity.ide.visualstudio@2.0.26
+  com.unity.ide.vscode@1.2.3
+  com.unity.multiplayer.center@2.0.1
+  com.unity.render-pipelines.universal@17.6.0
+  com.unity.shadergraph@17.6.0
+  com.unity.test-framework@1.8.0
+  com.unity.timeline@6.6.0
+  com.unity.ugui@2.6.0
+  com.unity.modules.accessibility@1.0.0
+  com.unity.modules.adaptiveperformance@1.0.0
+  com.unity.modules.ai@1.0.0
+  com.unity.modules.androidjni@1.0.0
+  com.unity.modules.animation@1.0.0
+  com.unity.modules.assetbundle@1.0.0
+  com.unity.modules.audio@1.0.0
+  com.unity.modules.cloth@1.0.0
+  com.unity.modules.director@1.0.0
+  com.unity.modules.imageconversion@1.0.0
+  com.unity.modules.imgui@1.0.0
+  com.unity.modules.jsonserialize@1.0.0
+  com.unity.modules.particlesystem@1.0.0
+  com.unity.modules.physics@1.0.0
+  com.unity.modules.physics2d@1.0.0
+  com.unity.modules.physicscore2d@1.0.0
+  com.unity.modules.screencapture@1.0.0
+  com.unity.modules.terrain@1.0.0
+  com.unity.modules.terrainphysics@1.0.0
+  com.unity.modules.tetgen@1.0.0
+  com.unity.modules.tilemap@1.0.0
+  com.unity.modules.timelinefoundation@1.0.0
+  com.unity.modules.ui@1.0.0
+  com.unity.modules.uielements@1.0.0
+  com.unity.modules.umbra@1.0.0
+  com.unity.modules.unityanalytics@1.0.0
+  com.unity.modules.unitywebrequest@1.0.0
+  com.unity.modules.unitywebrequestassetbundle@1.0.0
+  com.unity.modules.unitywebrequestaudio@1.0.0
+  com.unity.modules.unitywebrequesttexture@1.0.0
+  com.unity.modules.unitywebrequestwww@1.0.0
+  com.unity.modules.vectorgraphics@1.0.0
+  com.unity.modules.vehicles@1.0.0
+  com.unity.modules.video@1.0.0
+  com.unity.modules.wind@1.0.0
+  com.unity.modules.xr@1.0.0
+  com.unity.modules.subsystems@1.0.0
+  com.unity.modules.hierarchycore@1.0.0
+  com.unity.ext.nunit@2.1.0
+  com.unity.render-pipelines.core@17.6.0
+  com.unity.searcher@4.9.5
+  com.unity.graph-authoring@1.0.0
+  com.unity.render-pipelines.universal-config@17.6.0
+  com.unity.splines@2.9.0
+  com.unity.burst@2.0.0
+  com.unity.collections@6.6.0
+  com.unity.profiling.core@1.0.3
+  com.unity.mathematics@1.4.0
+  com.unity.settings-manager@2.1.1
+  com.unity.nuget.mono-cecil@1.11.6
+  com.unity.test-framework.performance@6.6.0
+[Package Manager] Registered 0 packages:
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.00 seconds
+Assets is a symbolic link. Using symlinks in Unity projects may cause your project to become corrupted if you create multiple references to the same asset, use recursive symlinks or use symlinks to share assets between projects used with different versions of Unity. Make sure you know what you are doing.
+Disabling directory monitoring for current editor session. Found symlinks in project which cannot be used with directory monitoring. Directory monitoring settings can be changed in preferences.
+AcceleratorClientConnectionCallback - disconnected - :0
+AcceleratorClientConnectionCallback - disconnected - :0
+[API Updater] Processing imported assemblies took 267 ms (3/3 assembly(ies)).
+[Licensing::Module] Error: The connection with the Unity Licensing Client has been lost. Attempting to reconnect.
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+[Licensing::Module] Successfully launched the LicensingClient (PId: 18512)
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+[Licensing::Module] Timed-out after 60.00s, waiting for channel: "LicenseClient-alena"
+[Licensing::Module] The re-connection attempt was UN-successful.
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ai.navigation]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.cinemachine]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.collab-proxy]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ide.rider]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ide.visualstudio]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ide.vscode]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.multiplayer.center]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.render-pipelines.universal]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.shadergraph]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.test-framework]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.timeline]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ugui]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.accessibility]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.adaptiveperformance]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.ai]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.androidjni]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.animation]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.assetbundle]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.audio]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.cloth]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.director]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.imageconversion]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.imgui]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.jsonserialize]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.particlesystem]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.physics]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.physics2d]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.physicscore2d]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.screencapture]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.terrain]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.terrainphysics]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.tetgen]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.tilemap]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.timelinefoundation]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.ui]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.uielements]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.umbra]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unityanalytics]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unitywebrequest]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unitywebrequestassetbundle]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unitywebrequestaudio]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unitywebrequesttexture]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.unitywebrequestwww]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.vectorgraphics]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.vehicles]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.video]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.wind]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.xr]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.subsystems]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.modules.hierarchycore]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.ext.nunit]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.render-pipelines.core]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.searcher]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.graph-authoring]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.render-pipelines.universal-config]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.splines]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.burst]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.collections]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.profiling.core]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.mathematics]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.settings-manager]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.nuget.mono-cecil]
+[Package Manager] Unknown entitlement status [0] for package [com.unity.test-framework.performance]
+[Licensing::Module] Error: The connection with the Unity Licensing Client has been lost. Attempting to reconnect.
+[Licensing::IpcConnector] Connection to channel LicenseClient-alena refused
+[Licensing::Module] Successfully launched the LicensingClient (PId: 26368)

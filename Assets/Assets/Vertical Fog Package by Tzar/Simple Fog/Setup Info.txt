@@ -1,0 +1,5 @@
+Basic use:
+1. Create a Plane - GameObject -> 3D Object -> Plane
+2. Create a new material, drag the appropriate Vertical Fog.shader on top of the material and then apply the material to the plane/object
+
+Unzip the HDRP shader zip only if you're using HDRP. Otherwise it will give you errors.
