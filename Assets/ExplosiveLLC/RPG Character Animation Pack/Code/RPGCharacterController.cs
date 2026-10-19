@@ -33,6 +33,7 @@ namespace RPGCharacterAnims
         public GameObject part;
         
         private bool gate = true;
+        private float nextFootballKickTime;
 
         //Strafing/action.
         [HideInInspector] public bool isDead = false;
@@ -198,6 +199,8 @@ namespace RPGCharacterAnims
                 //}
             }
 
+            UpdateFootballKick();
+
             //player1
             //if (playa1)
             //{
@@ -291,6 +294,41 @@ namespace RPGCharacterAnims
             //    }
             //}
             
+        }
+
+        private void UpdateFootballKick()
+        {
+            if ((playa1 && Input.GetKeyDown(KeyCode.N)) ||
+                (playa2 && Input.GetKeyDown(KeyCode.L)))
+            {
+                TryKickFootball();
+            }
+        }
+
+        private bool TryKickFootball()
+        {
+            if (!football || ballScript == null || (!playa1 && !playa2) ||
+                !rpgCharacterInputController.enabled || !rpgCharacterInputController.allowedInput ||
+                !canAction || isDead || isBlocking || Time.time < nextFootballKickTime)
+            {
+                return false;
+            }
+
+            nextFootballKickTime = Time.time + 0.6f;
+            // The football scene has physical leg poses, independent of attack animation events.
+            if (throwaLeg != null)
+            {
+                throwaLeg.Init();
+                StartCoroutine(delayLeg());
+            }
+
+            if (Vector3.Distance(transform.position, ballScript.transform.position) >= range)
+            {
+                return false;
+            }
+
+            ballScript.Shoot(playa1 ? 1 : 0);
+            return true;
         }
 
         IEnumerator hitTimeout()
@@ -1246,7 +1284,7 @@ namespace RPGCharacterAnims
 				}
 			}
 			//Head look toggle.
-			if(Input.GetKeyDown(KeyCode.L))
+			if(!football && Input.GetKeyDown(KeyCode.L))
 			{
 				if(headLook == false)
 				{

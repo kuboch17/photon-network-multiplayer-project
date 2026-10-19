@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
@@ -17,7 +18,9 @@ namespace PvpLab
         private const byte AuthoritativeStateEvent = 81;
         private const byte CombatInputEvent = 82;
         private const byte CombatVisualEvent = 83;
-        private const float SendInterval = .05f;
+        private const float SendInterval = 1f / 30f;
+        private const int InterpolationBackTimeMs = 100;
+        private const int MaxExtrapolationMs = 100;
         private const float MaximumSpeed = 15f;
         private const float AttackRange = 2.2f;
         private const int AttackDamage = 25;
@@ -43,10 +46,24 @@ namespace PvpLab
         private readonly int[] pendingContact = new int[2];
         private readonly int[] pendingResolve = new int[2];
         private readonly int[] hp = { 100, 100 };
+        private readonly List<NetworkFrame>[] frameBuffer =
+        {
+            new List<NetworkFrame>(12),
+            new List<NetworkFrame>(12)
+        };
+
+        private sealed class NetworkFrame
+        {
+            public int Time;
+            public Vector3 Position;
+            public Quaternion Rotation;
+            public Vector3 Velocity;
+        }
 
         private int localSlot = -1;
         private string matchId;
         private float nextSend;
+        private float lastMovementSentAt;
         private Vector3 lastSentPosition;
         private bool prepared;
         private bool leaving;
@@ -119,6 +136,9 @@ namespace PvpLab
             original.SetActive(true);
             copy.SetActive(true);
             yield return null;
+            // Disabled RPG components still receive Awake and may add helper
+            // behaviours.  Disable that second wave on the remote copy too.
+            DisableRemoteBehaviours(characters[1 - localSlot]);
 
             for (int i = 0; i < 2; i++)
             {
@@ -126,6 +146,7 @@ namespace PvpLab
                 targetPosition[i] = authorityPosition[i] = characters[i].position;
                 targetRotation[i] = characters[i].rotation;
                 lastMoveAt[i] = PhotonNetwork.ServerTimestamp;
+                QueueFrame(i, lastMoveAt[i], characters[i].position, characters[i].rotation, Vector3.zero);
             }
             lastSentPosition = characters[localSlot].position;
             RetargetCamera(characters[localSlot]);
@@ -152,12 +173,19 @@ namespace PvpLab
                 }
             }
             if (locallyOwned) return;
+            DisableRemoteBehaviours(root);
+        }
 
+        private static void DisableRemoteBehaviours(Transform root)
+        {
             foreach (MonoBehaviour behaviour in root.GetComponentsInChildren<MonoBehaviour>(true)) behaviour.enabled = false;
             foreach (Rigidbody body in root.GetComponentsInChildren<Rigidbody>(true))
             {
-                body.linearVelocity = Vector3.zero;
-                body.angularVelocity = Vector3.zero;
+                if (!body.isKinematic)
+                {
+                    body.linearVelocity = Vector3.zero;
+                    body.angularVelocity = Vector3.zero;
+                }
                 body.isKinematic = true;
             }
         }
@@ -196,7 +224,8 @@ namespace PvpLab
             if (attackPressed) SubmitCombat(0);
             if (Input.GetKeyDown(KeyCode.K)) SubmitCombat(1);
 
-            if (PunSmoke.Enabled && !PunSmoke.Done && receivedNetworkState && Time.realtimeSinceStartup - smokeStarted > 2f)
+            float smokeHold = PhotonNetwork.IsMasterClient ? 5f : 2f;
+            if (PunSmoke.Enabled && !PunSmoke.Done && receivedNetworkState && Time.realtimeSinceStartup - smokeStarted > smokeHold)
                 PunSmoke.Finish(characters[0] != null && characters[1] != null && localSlot >= 0,
                     "pair synced local=Character" + (localSlot + 1));
         }
@@ -204,15 +233,62 @@ namespace PvpLab
         private void LateUpdate()
         {
             if (!prepared) return;
-            int remote = 1 - localSlot;
-            characters[remote].position = Vector3.Lerp(characters[remote].position, targetPosition[remote], 1f - Mathf.Exp(-18f * Time.unscaledDeltaTime));
-            characters[remote].rotation = Quaternion.Slerp(characters[remote].rotation, targetRotation[remote], 1f - Mathf.Exp(-18f * Time.unscaledDeltaTime));
+            RenderRemote(1 - localSlot);
+        }
+
+        private void RenderRemote(int slot)
+        {
+            List<NetworkFrame> frames = frameBuffer[slot];
+            if (frames.Count == 0) return;
+            int renderTime = unchecked(PhotonNetwork.ServerTimestamp - InterpolationBackTimeMs);
+
+            while (frames.Count >= 2 && PunCombatProtocol.Elapsed(renderTime, frames[1].Time) >= 0)
+                frames.RemoveAt(0);
+
+            Vector3 position;
+            Quaternion rotation;
+            if (frames.Count >= 2)
+            {
+                NetworkFrame from = frames[0], to = frames[1];
+                int duration = Mathf.Max(1, PunCombatProtocol.Elapsed(to.Time, from.Time));
+                float t = Mathf.Clamp01(PunCombatProtocol.Elapsed(renderTime, from.Time) / (float)duration);
+                position = Vector3.LerpUnclamped(from.Position, to.Position, t);
+                rotation = Quaternion.SlerpUnclamped(from.Rotation, to.Rotation, t);
+            }
+            else
+            {
+                NetworkFrame latest = frames[0];
+                int extrapolation = Mathf.Clamp(PunCombatProtocol.Elapsed(renderTime, latest.Time), 0, MaxExtrapolationMs);
+                position = latest.Position + latest.Velocity * (extrapolation / 1000f);
+                rotation = latest.Rotation;
+            }
+
+            characters[slot].position = position;
+            characters[slot].rotation = rotation;
+        }
+
+        private void QueueFrame(int slot, int timestamp, Vector3 position, Quaternion rotation, Vector3 velocity)
+        {
+            List<NetworkFrame> frames = frameBuffer[slot];
+            if (frames.Count > 0 && PunCombatProtocol.Elapsed(timestamp, frames[frames.Count - 1].Time) <= 0)
+            {
+                NetworkFrame current = frames[frames.Count - 1];
+                current.Position = position;
+                current.Rotation = rotation;
+                current.Velocity = velocity;
+                return;
+            }
+            frames.Add(new NetworkFrame { Time = timestamp, Position = position, Rotation = rotation, Velocity = velocity });
+            if (frames.Count > 12) frames.RemoveAt(0);
         }
 
         private void SendMovement(int now)
         {
             Transform local = characters[localSlot];
-            Vector3 velocity = (local.position - lastSentPosition) / Mathf.Max(SendInterval, .001f);
+            float sentAt = Time.unscaledTime;
+            float elapsed = lastMovementSentAt > 0f ? sentAt - lastMovementSentAt : SendInterval;
+            Vector3 velocity = (local.position - lastSentPosition) / Mathf.Max(elapsed, .001f);
+            lastMovementSentAt = sentAt;
             lastSentPosition = local.position;
             Animator animator = animators[localSlot];
             object[] packet =
@@ -250,9 +326,11 @@ namespace PvpLab
             authorityPosition[slot] = proposed;
             targetPosition[slot] = proposed;
             targetRotation[slot] = new Quaternion((float)d[7], (float)d[8], (float)d[9], (float)d[10]);
+            Vector3 velocity = new Vector3((float)d[11], (float)d[12], (float)d[13]);
             lastMoveSequence[slot] = seq;
             lastMoveAt[slot] = now;
             d[4] = proposed.x; d[5] = proposed.y; d[6] = proposed.z; d[3] = now;
+            if (slot != localSlot) QueueFrame(slot, now, proposed, targetRotation[slot], velocity);
             if (slot != localSlot) ApplyAnimation(slot, (bool)d[14], (float)d[15], (bool)d[16], (int)d[17]);
             if (slot != localSlot) receivedNetworkState = true;
             BroadcastState(d);
@@ -279,13 +357,18 @@ namespace PvpLab
             lastMoveSequence[slot] = (int)d[2];
             Vector3 position = new Vector3((float)d[4], (float)d[5], (float)d[6]);
             Quaternion rotation = new Quaternion((float)d[7], (float)d[8], (float)d[9], (float)d[10]);
+            Vector3 velocity = new Vector3((float)d[11], (float)d[12], (float)d[13]);
             targetPosition[slot] = position;
             targetRotation[slot] = rotation;
             authorityPosition[slot] = position;
             hp[0] = (int)d[18]; hp[1] = (int)d[19]; rejectedInputs = (int)d[20]; combatResult = (string)d[21];
             receivedNetworkState = true;
-            if (slot == localSlot && Vector3.Distance(characters[slot].position, position) > 1.5f)
-                characters[slot].position = position;
+            if (slot != localSlot) QueueFrame(slot, (int)d[3], position, rotation, velocity);
+            else if (Vector3.Distance(characters[slot].position, position) > 6f)
+            {
+                int age = Mathf.Clamp(PunCombatProtocol.Elapsed(PhotonNetwork.ServerTimestamp, (int)d[3]), 0, MaxExtrapolationMs);
+                characters[slot].position = position + velocity * (age / 1000f);
+            }
             ApplyAnimation(slot, (bool)d[14], (float)d[15], (bool)d[16], (int)d[17]);
         }
 
@@ -404,8 +487,23 @@ namespace PvpLab
             }
         }
 
-        public override void OnPlayerLeftRoom(Player otherPlayer) { Leave("The other player disconnected."); }
-        public override void OnMasterClientSwitched(Player newMasterClient) { Leave("The host disconnected; authority migration is disabled for this demo."); }
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            if (FinishSmokeAfterPeerExit()) return;
+            Leave("The other player disconnected.");
+        }
+        public override void OnMasterClientSwitched(Player newMasterClient)
+        {
+            if (FinishSmokeAfterPeerExit()) return;
+            Leave("The host disconnected; authority migration is disabled for this demo.");
+        }
+
+        private bool FinishSmokeAfterPeerExit()
+        {
+            if (!PunSmoke.Enabled || PunSmoke.Done || !receivedNetworkState) return false;
+            PunSmoke.Finish(true, "pair synced local=Character" + (localSlot + 1));
+            return true;
+        }
 
         private void Leave(string reason)
         {

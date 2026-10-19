@@ -1,0 +1,24 @@
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 29400)
+VBCSCompiler prewarm took 6.69 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.2f1 (770e33f6875c) revision 7802419'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-alena" at "2026-10-19T08:26:00.7495783Z"
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'en' Physical Memory: 16194 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-19T08:26:00Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.2f1\Editor\Unity.exe
+-batchmode
+-nographics
+-projectPath
+C:\Users\alena\Documents\unity projects\photon-network-multiplayer-project-main
+-executeMethod
+FootballKickVerification.Run
+-logFile
+Tests/FootballKickVerification.log
+Successfully changed project path to: C:\Users\alena\Documents\unity projects\photon-network-multiplayer-project-main
+C:/Users/alena/Documents/unity projects/photon-network-multiplayer-project-main
+[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 1

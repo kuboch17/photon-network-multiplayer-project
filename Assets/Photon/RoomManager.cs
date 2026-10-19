@@ -16,6 +16,7 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
     private Text statusText;
     private bool busy;
     private bool starting;
+    private bool masterReady;
     private float smokeRetryAt;
 
     private void Awake()
@@ -35,6 +36,7 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = PvpLab.PunCombatProtocol.Version;
         PhotonNetwork.SendRate = 30;
         PhotonNetwork.SerializationRate = 20;
+        PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "eu";
         PhotonNetwork.NickName = PvpLab.PunSmoke.Enabled
             ? "Smoke-" + PvpLab.PunSmoke.Role
             : PlayerPrefs.GetString("Hunting.Nickname", "Player-" + UnityEngine.Random.Range(100, 999));
@@ -42,14 +44,14 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
         SetStatus("Connecting to Photon...");
         SetButtons(false);
         if (!PhotonNetwork.IsConnected) PhotonNetwork.ConnectUsingSettings();
-        else OnConnectedToMaster();
+        else if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.Server == ServerConnection.MasterServer) OnConnectedToMaster();
     }
 
     private void Update()
     {
         if (!PvpLab.PunSmoke.Enabled || PvpLab.PunSmoke.Done) return;
         PvpLab.PunSmoke.CheckDeadline();
-        if (PhotonNetwork.InRoom || !PhotonNetwork.IsConnectedAndReady || busy || Time.realtimeSinceStartup < smokeRetryAt) return;
+        if (PhotonNetwork.InRoom || !masterReady || busy || Time.realtimeSinceStartup < smokeRetryAt) return;
         smokeRetryAt = Time.realtimeSinceStartup + 1f;
         if (PvpLab.PunSmoke.Role == "host") CreateRoom(); else JoinRoom();
     }
@@ -65,7 +67,7 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
     private void CreateRoom()
     {
         string room = RoomName();
-        if (room == null || busy || !PhotonNetwork.IsConnectedAndReady) return;
+        if (room == null || busy || !masterReady) return;
         busy = true;
         SetButtons(false);
         SetStatus("Creating room " + room + "...");
@@ -83,7 +85,7 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
     private void JoinRoom()
     {
         string room = RoomName();
-        if (room == null || busy || !PhotonNetwork.IsConnectedAndReady) return;
+        if (room == null || busy || !masterReady) return;
         busy = true;
         SetButtons(false);
         SetStatus("Joining room " + room + "...");
@@ -107,6 +109,7 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
+        masterReady = true;
         busy = false;
         SetButtons(true);
         SetStatus("Connected. Create a room, then share its code with Player 2.");
@@ -124,11 +127,23 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
             return;
         }
         SetButtons(false);
-        SetStatus(PhotonNetwork.IsMasterClient ? "Room ready. Waiting for Player 2..." : "Connected as Player 2. Starting hunting...");
+        if (PhotonNetwork.IsMasterClient)
+            SetStatus("ROOM CREATED: " + PhotonNetwork.CurrentRoom.Name + "\nPLAYERS 1/2  •  Waiting for Player 2...", new Color(.38f, .9f, .64f));
+        else
+            SetStatus("JOINED: " + PhotonNetwork.CurrentRoom.Name + "\nPLAYERS 2/2  •  Starting hunting...", new Color(.38f, .9f, .64f));
         PrepareMatch();
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer) { PrepareMatch(); }
+    public override void OnCreatedRoom()
+    {
+        SetStatus("ROOM CREATED: " + PhotonNetwork.CurrentRoom.Name + "\nPLAYERS 1/2  •  Waiting for Player 2...", new Color(.38f, .9f, .64f));
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        SetStatus("PLAYER 2 CONNECTED\nPLAYERS 2/2  •  Starting hunting...", new Color(.38f, .9f, .64f));
+        PrepareMatch();
+    }
 
     public override void OnRoomPropertiesUpdate(Hashtable changed)
     {
@@ -139,6 +154,7 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
     public override void OnJoinRoomFailed(short code, string message) { Failed("Could not join room: " + message); }
     public override void OnDisconnected(DisconnectCause cause)
     {
+        masterReady = false;
         busy = false;
         SetButtons(false);
         SetStatus("Disconnected: " + cause + ". Restart the game to reconnect.");
@@ -148,7 +164,7 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
     private void Failed(string message)
     {
         busy = false;
-        SetButtons(PhotonNetwork.IsConnectedAndReady);
+        SetButtons(masterReady);
         SetStatus(message);
     }
 
@@ -161,13 +177,26 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
 
     private void SetStatus(string message)
     {
-        if (statusText != null) statusText.text = message;
+        if (statusText != null)
+        {
+            statusText.text = message;
+            statusText.color = new Color(.72f, .78f, .82f);
+        }
         Debug.Log("LOBBY: " + message);
+    }
+
+    private void SetStatus(string message, Color color)
+    {
+        SetStatus(message);
+        if (statusText != null) statusText.color = color;
     }
 
     private void BuildSimpleLobbyLayout()
     {
         RectTransform card = transform as RectTransform;
+        // The original menu background is a later Canvas sibling.  Keep the
+        // interactive lobby card above it after reparenting the old controls.
+        card.SetAsLastSibling();
         card.anchorMin = card.anchorMax = new Vector2(.5f, .5f);
         card.anchoredPosition = Vector2.zero;
         card.sizeDelta = new Vector2(560, 390);
@@ -217,7 +246,8 @@ public sealed class RoomManager : MonoBehaviourPunCallbacks
         GameObject go = new GameObject(text, typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
         go.transform.SetParent(parent, false);
         Text label = go.GetComponent<Text>();
-        label.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        // Unity 6 removed Arial.ttf from built-in resources.
+        label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         label.text = text;
         label.fontSize = size;
         label.color = color;

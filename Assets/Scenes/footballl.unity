@@ -1207,6 +1207,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4703614049350645021, guid: 213d9057fef28ac46bf031c42fd832d2, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 936251401}
     - target: {fileID: 4703614049350645023, guid: 213d9057fef28ac46bf031c42fd832d2, type: 3}
       propertyPath: range
       value: 2
@@ -3546,7 +3550,7 @@ Transform:
   m_GameObject: {fileID: 432146560}
   serializedVersion: 2
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -14.575935, y: 20.43863, z: 1.2072449}
+  m_LocalPosition: {x: -14.575935, y: 20.438633, z: 1.207243}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6452,6 +6456,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3949878126338086029, guid: 763abda6d958aad42b3eb592b6ed7c03, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 936251401}
     - target: {fileID: 3983004135371710189, guid: 763abda6d958aad42b3eb592b6ed7c03, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.00000025331974
@@ -14405,7 +14413,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 53
+  field of view: 53.359097
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
